@@ -11,6 +11,7 @@
 
   main p{
   	margin: 0 16px;
+    margin-bottom: 24px;
   }
 
   figure img{
