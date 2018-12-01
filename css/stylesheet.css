@@ -67,7 +67,7 @@ main{
 }
 
 main h2{
-    margin-top: 8px;
+  margin-top: 8px;
 	padding-bottom: 8px;
 }
 
@@ -99,7 +99,7 @@ main section{
     font-size: 14px;
 }
 #list a{
-    color: #808080;    
+    color: #808080;
     font-size: 14px;
 }
 #list a:hover{
