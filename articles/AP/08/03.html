@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>taqm's Note | 認証</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="../../../css/stylesheet.css">
+        <link rel="stylesheet" href="../../../css/responsive.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--header-->
+        <header>
+            <h1 id="title"><a href="../../../index.html">taqm's Note</a></h1>
+        </header>
+
+        <!--main-->
+        <main>
+          <h2>認証</h2>
+          <div id="list">
+            <p><a href="#">HOME</a> > <a href="#">応用情報技術者試験</a> > <a href="#">セキュリティ</a> > 認証</p>
+          </div>
+
+          <p>
+            <span class="hl">認証</span>は、コンピュータシステムを利用する個人が、本当に利用する権限を保持しているか否かを確認するために行われます。システムでは多くの場合、ネットワーク越しに認証を行うため、方法を工夫しなければなりません。
+          </p>
+          <p>
+            そこで多く利用されるようになったのが、知識による認証で一般的には<span class="hl">パスワード</span>として実装されます。
+          </p>
+
+          <div id="contents">
+            <h4>目次</h4>
+            <ol>
+                <li><a href="#01">固定式パスワード方式</a></li>
+                <li><a href="#02">チャレンジレスポンス認証</a></li>
+                <li><a href="#03">ワンタイムパスワード</a></li>
+                <li><a href="#04">シングルサインオン</a></li>
+                <li><a href="#05">バイオメトリクス認証</a></li>
+                <li><a href="#06"></a></li>
+                <li><a href="#07"></a></li>
+            </ol>
+          </div>
+
+          <section id="01">
+            <h3>固定式パスワード方式</h3>
+            <p>
+                ユーザIDとそれに対応するパスワードを入力させ、本人であるか否かを認証する古典的な<span class="hl">パスワード認証</span>方式です。簡便なため、多くのコンピューターシステムで用いられる一方、一度パスワードが漏れてしまうとそれがいくらでも流布してしまい、利用に耐えなくなります。
+            </p>
+            <p>
+                パスワードを不正に取得しようとする攻撃には次のようなものがあります。
+            </p>
+            <h4>辞書攻撃</h4>
+            <p>
+                辞書にある単語を片っ端から入力して、パスワードを割り出す手法。対策として、辞書にある単語は使わずランダムな文字列でパスワードを設定するなどの方法がある。
+            </p>
+            <h4>ブルートフォース攻撃</h4>
+            <p>
+                <span class="hl">総当り攻撃</span>とも呼ばれ、文字を組み合わせてあらゆるパスワードでログインを何度も試みる手法。対策として、ログインの試行回数に制限を設けるなどの方法がある。
+            </p>
+          </section>
+
+          <section id="02">
+            <h3>チャレンジレスポンス認証</h3>
+            <p>
+                ネットワーク上でパスワード認証を利用する際の脆弱性を解消するために登場したのが<span class="hl">チャレンジレスポンス認証</span>です。
+            </p>
+            <figure>
+                <img src="img/04.svg" alt="チャレンジレスポンス認証">
+            </figure>
+            <figcaption>
+                i.チャレンジレスポンス認証のしくみ
+            </figcaption>
+            <h4>チャレンジレスポンス認証の手順</h4>
+            <ol>
+                <li>クライアントはサーバにユーザIDを送信し、認証を要求する。</li>
+                <li>サーバは<span class="hl">チャレンジコード</span>(使い捨ての乱数)を返信する。</li>
+                <li>クライアントはチャレンジコードとパスワードから<span class="hl">ハッシュ値</span>を生成し、サーバに送信する。</li>
+                <li>サーバはチャレンジコードとパスワードからハッシュ値を生成し、クライアントから受け取ったハッシュ値と比較する。ハッシュ値が一致していればクライアントを認証する。</li>
+            </ol>
+            <p>
+                チャレンジレスポンス認証では、チャレンジコードとハッシュ値だけがネットワーク上を流れるため、盗聴に対して安全な認証方法であるといえます。
+            </p>
+          </section>
+
+          <section id="03">
+            <h3>ワンタイムパスワード</h3>
+            <p>
+               <span class="hl">ワンタイムパスワード</span>(OTP : One Time Password)方式は、ログインのたびに生成される使い捨てのパスワードを使う方式です。 
+            </p>
+            <p>
+                現在、時刻を利用する<span class="hl">時刻同期方式</span>や、チャレンジレスポンス方式を利用した<span class="hl">S/KEY方式</span>などが実用化されています。
+            </p>
+          </section>
+
+          <section id="04">
+            <h3>シングルサインオン</h3>
+            <p>
+                <span class="hl">シングルサインオン</span>は、ユーザ認証を一度だけ行うことで、許可された複数のサーバへのアクセスについても認証する技術です。
+            </p>
+            <h4>Cookie型</h4>
+            <p>
+                サーバは認証のための情報を生成してクライアントに送信する。クライアントはこれを保存し、他のサーバへはこの認証情報を自動的に送ることで、認証を受けることができる。
+            </p>
+            <h4>リバースプロキシ型</h4>
+            <p>
+                ユーザは<span class="hl">リバースプロキシサーバ</span>にアクセスし、認証を受ける。ユーザはリバースプロキシサーバを通じて他のサーバに接続するため、各サーバの認証はリバースプロキシサーバが自動的に代行する。
+            </p>
+            <h4>SAML型</h4>
+            <p>
+                アプリケーション連携を行うためのXMLの仕様。利用するサービスが<span class="hl">SAML</span>に対応していれば、HTMLなどを用いて複数のサービス間で認証情報が自動的にやり取りされる。
+            </p>
+          </section>
+
+          <section id="05">
+            <h3>バイオメトリクス認証</h3>
+          </section>
+          <section>
+            <h4>参考</h4>
+            <p><a href="http://amzn.asia/d/id6mgEU" target="__blank">技術評論社 - 応用情報技術者 合格教本</a></p>
+          </section>
+        </main>
+
+        <!--footer-->
+        <footer>
+          <p>&copy; 2018 <a href="https://twitter.com/taqm_" target="__blank">taqm</a></p>
+        </footer>
+    </body>
+</html>

@@ -91,6 +91,16 @@ main section{
 	margin-bottom: 80px;
 }
 
+section ul{
+    margin: 0 32px;
+    margin-bottom: 48px;
+}
+
+section ol{
+    margin: 0 32px;
+    margin-bottom: 48px;
+}
+
 #list p{
     margin: 0;
     padding-bottom: 32px;
@@ -132,6 +142,7 @@ figure{
 figure img{
     width: 70%;
 }
+
 figcaption{
     color: #808080;
 
@@ -140,6 +151,12 @@ figcaption{
 
     font-size: 14px;
     text-align: center;
+}
+
+table{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 64px;
 }
 
 /*footer*/
