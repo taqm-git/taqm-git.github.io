@@ -22,4 +22,8 @@
     width: 95%;
     font-size: 14px;
   }
+
+  section li~li{
+    margin-top: 24px;
+  }
 }
