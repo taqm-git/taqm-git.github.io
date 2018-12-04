@@ -113,9 +113,6 @@ section ol{
     font-size: 14px;
     text-decoration: underline;
 }
-#list a:hover{
-    text-decoration: underline;
-}
 
 #contents{
     width: 256px;
