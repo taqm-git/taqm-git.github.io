@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>taqm's Note | ディジタル署名とPKI</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="../../../css/stylesheet.css">
+        <link rel="stylesheet" href="../../../css/responsive.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--header-->
+        <header>
+            <h1 id="title"><a href="../../../index.html">taqm's Note</a></h1>
+        </header>
+
+        <!--main-->
+        <main>
+          <h2>ディジタル署名とPKI</h2>
+          <div id="list">
+            <p><a href="../../../index.html">HOME</a> > <a href="../index.html">応用情報技術者試験</a> > <a href="index.html">セキュリティ</a> > ディジタル署名とPKI</p>
+          </div>
+
+          <p>
+            メールをはじめとする様々な電子文書のやりとりには、「改ざん」や「なりすまし」といったリスクが存在します。これらのリスクに対する措置として、それが確かに本人が発信したものであることを証明する<span class="hl">ディジタル署名</span>があります。
+          </p>
+
+          <div id="contents">
+            <h4>目次</h4>
+            <ol>
+                <li><a href="#01">ディジタル署名</a></li>
+                <li><a href="#02">PKI</a></li>
+                <li><a href="#03">SSL/TLS</a></li>
+            </ol>
+          </div>
+
+          <section id="01">
+            <h3>ディジタル署名</h3>
+            <p>
+                ディジタル署名では、平文をハッシュ化した<span class="hl">メッセージダイジェスト</span>を<span class="hl">送信者の秘密鍵</span>で暗号化し、平文とともに送信します。ディジタル署名を受け取った受信者は、<span class="hl">送信者の公開鍵</span>を用いてディジタル署名を復号します。
+            </p>
+            <figure>
+                <img src="img/051.svg" alt="ディジタル署名">
+            </figure>
+            <figcaption>i. ディジタル署名のしくみ</figcaption>
+            <p>
+                公開鍵に対応する秘密鍵を持っているのは公開鍵を公開した本人(送信者)だけなので、公開鍵でメッセージダイジェストを正しく復号できれば、<span class="hl">送信者が本人であることを確認</span>できます。また、受信した平文をハッシュ化したものを、復号したメッセージダイジェストと比較することで、<span class="hl">改ざんの有無を検知</span>することもできます。
+            </p>
+            <p>
+                なお、実際には平文も送信時に暗号化します。
+            </p>
+          </section>
+
+          <section id="02">
+            <h3>PKI</h3>
+            <p>
+                <span class="hl">PKI</span>(Public Key Infrastructure)とは、公開鍵暗号方式を利用した認証および盗聴防止基盤(しくみ)のことで、<span class="hl">公開鍵基盤</span>ともよばれています。公開鍵暗号を利用した証明書の作成, 管理, 格納, 配布, 破棄 に必要な方式, システム, プロトコルおよびポリシの集合によって実現されています。
+            </p>
+            <p>
+                PKIによって、第三者機関である<span class="hl">認証局(CA)</span>が、ディジタル署名を利用した<span class="hl">ディジタル証明書</span>(<span class="hl">公開鍵証明書</span>ともいう)を発行し、公開鍵が正当な送信者のものであることを保証します。
+            </p>
+            <figure>
+                <img src="img/052.svg" alt="PKI">
+            </figure>
+            <figcaption>ii. PKIモデル</figcaption>
+            <ol>
+                <li>送信者は、認証局に公開鍵を提出し、証明書の発行を依頼する。</li>
+                <li>認証局は、申請書類等に基づき、公開鍵の所有者の本人性を審査し、ディジタル証明書を発行する。</li>
+                <li>送信者は、受信者に対しディジタル証明書を送信する。</li>
+                <li>受信者は、それを認証局の公開鍵で復号し、ディジタル証明書中の送信者情報と認証局の署名を確認すると同時に送信者の公開鍵を入手する。</li>
+            </ol>
+          </section>
+
+          <section id="03">
+            <h3>SSL/TLS</h3>
+            <p>
+                <span class="hl">SSL</span>(Secure Sockets Layer)は、暗号化と認証の機能を提供するプロトコルです。公開鍵基盤を活用し安全な通信を実現します。<span class="hl">改ざん検出</span>のほか、ディジタル証明書を使った<span class="hl">サーバ/クライアント認証</span>も行えます。
+            </p>
+            <figure>
+                <img src="img/053.svg">
+            </figure>
+            <figcaption>iii. SSLの利用準備</figcaption>
+            <ol>
+                <li>Webサーバは、公開鍵の正当性を証明するために、認証局に登録申請を行う。</li>
+                <li>認証局は、Webサーバに対してサーバ証明書(ディジタル証明書)を発行し、サーバは認証を受ける。</li>
+                <li>クライアントがWebサーバに接続すると、Webサーバは認証局の署名付きサーバ証明書を返信する。</li>
+                <li>クライアントは認証局の署名の確認を行い、サーバ証明書が本物であることを確認する。</li>
+                <li>正当性が証明された後、クライアントは暗号化鍵の基となる乱数を発生させ、それをサーバ証明書に組み込まれたWebサーバの公開鍵で暗号化してWebサーバに送る。</li>
+                <li>Webサーバは秘密鍵で、暗号化された乱数を復号する。</li>
+                <li>Webサーバとクライアントの双方で、マスターシークレット(MS)と呼ばれる鍵を生成し、このMSから生成した共通鍵を使って暗号化通信を行う。</li>
+            </ol>
+          </section>
+
+          <section>
+            <h4>参考</h4>
+            <p><a href="http://amzn.asia/d/id6mgEU" target="__blank">技術評論社 - 応用情報技術者 合格教本</a></p>
+          </section>
+        </main>
+
+        <!--footer-->
+        <footer>
+          <p>&copy; 2018 <a href="https://twitter.com/taqm_" target="__blank">taqm</a></p>
+        </footer>
+    </body>
+</html>

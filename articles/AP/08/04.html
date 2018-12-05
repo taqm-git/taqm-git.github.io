@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>taqm's Note | リモートアクセスと認証</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="../../../css/stylesheet.css">
+        <link rel="stylesheet" href="../../../css/responsive.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--header-->
+        <header>
+            <h1 id="title"><a href="../../../index.html">taqm's Note</a></h1>
+        </header>
+
+        <!--main-->
+        <main>
+          <h2>リモートアクセスと認証</h2>
+          <div id="list">
+            <p><a href="../../../index.html">HOME</a> > <a href="../index.html">応用情報技術者試験</a> > <a href="index.html">セキュリティ</a> > リモートアクセスと認証</p>
+          </div>
+
+          <p>
+            公衆回線網を通じて、遠隔地から会社などのLANやコンピュータに接続し、ファイルへのアクセスやコンピュータの操作を行う技術を<span class="hl">リモートアクセス</span>といいます。
+          </p>
+          <p>
+            リモートアクセスでは、ユーザはLANに設置されたリモートアクセスサーバに接続して、認証を受けた上でそのコンピュータシステムを利用します。
+          </p>
+
+          <div id="contents">
+            <h4>目次</h4>
+            <ol>
+                <li><a href="#01">PPPの認証技術</a></li>
+                <li><a href="#02">RADIUS認証</a></li>
+                <li><a href="#03">IEEE802.1X</a></li>
+            </ol>
+          </div>
+
+          <section id="01">
+            <h3>PPPの認証技術</h3>
+            <p>
+                リモートアクセスとして使われる<span class="hl">PPP</span>(Point to Point Protocol)は、電話回線で二点間の通信を行うためのデータリンク層のプロトコルです。
+            </p>
+            <p>
+                PPPで利用される認証プロトコルには、<span class="hl">PAP</span>と<span class="hl">CHAP</span>がありますが、現在、ほとんどのPPP対応通信機器は、CHAPをサポートしているため、PPPでは認証プロトコルにCHAPを使うことが一般的です。
+            </p>
+            <h4>PAP (Password Authentication Protocol)</h4>
+            <p>
+                PPPで利用される最も基本的な認証プロトコル。平文のまま認証データを送信するため、盗聴に弱いという短所をもつ。
+            </p>
+            <h4>CHAP (Challenge Handshake Authentication Protocol)</h4>
+            <p>
+                <span class="hl">チャレンジハンドシェイク認証プロトコル</span>の略。PAPの盗聴に対する脆弱性を補うために登場したプロトコル。チャレンジレスポンス認証を利用して暗号化された認証データを送信する。
+            </p>
+          </section>
+
+          <section id="02">
+            <h3>RADIUS認証</h3>
+            <p>
+                リモートアクセスにおいて、アクセスサーバは外界に対してアクセス経路を開いており、認証のためのユーザIDやパスワード情報が蓄積されているため、クラッキング時の被害が大きくなります。
+            </p>
+            <p>
+                <span class="hl">RADIUS</span>(Remote Authentication Dial-In User Service)はアクセスサーバ(RADIUSクライアント)と認証サーバ(RADIUSサーバ)を分離することでこの脆弱性を緩和するものです。
+            </p>
+            <figure>
+                <img src="img/041.svg" alt="RADIUS認証">
+            </figure>
+            <figcaption>i. RADIUSのしくみ</figcaption>
+            <p>
+                ユーザはアクセスサーバにアクセスし、アクセスサーバが認証サーバに認証を要求することで、ユーザ認証を行います。
+            </p>
+            <p>
+                これによって、アクセスサーバに不正に侵入されても、直接ユーザ情報を取得することはできません。このようにアクセスサーバと認証サーバを分けることで<span class="hl">セキュリティの向上</span>、さらに<span class="hl">ユーザの一元管理</span>が実現できます。
+            </p>
+          </section>
+
+          <section id="03">
+            <h3>IEEE802.1X</h3>
+            <p>
+                イーサネットや無線LANにおけるユーザ認証のための規格です。認証のしくみとして<span class="hl">RADIUS</span>を採用し、認証プロトコルにはPPPを拡張した<span class="hl">EAP</span>(Extended Authentication Protocol)が使われます。
+            </p>
+            <p>
+                なお、EAPにはクライアント証明書で認証する<span class="hl">EAP-TLS</span>やハッシュ関数MD5を用いたチャレンジレスポンス方式で認証する<span class="hl">EAP-MD5</span>など、いくつかのバリエーションがあります。
+            </p>
+          </section>
+
+          <section>
+            <h4>参考</h4>
+            <p><a href="http://amzn.asia/d/id6mgEU" target="__blank">技術評論社 - 応用情報技術者 合格教本</a></p>
+          </section>
+        </main>
+
+        <!--footer-->
+        <footer>
+          <p>&copy; 2018 <a href="https://twitter.com/taqm_" target="__blank">taqm</a></p>
+        </footer>
+    </body>
+</html>
