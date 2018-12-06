@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>taqm's Note | 【Ubuntu】2,500円のpcでLinux動かしてみた</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="../../css/stylesheet.css">
+        <link rel="stylesheet" href="../../css/responsive.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--header-->
+        <header>
+            <h1 id="title"><a href="../../index.html">taqm's Note</a></h1>
+        </header>
+
+        <!--main-->
+        <main>
+          <h2>【Ubuntu】2,500円のpcでLinux動かしてみた</h2>
+          <div id="list">
+            <p><a href="../../index.html">HOME</a> > <a href="index.html">Linux</a> > 【Ubuntu】2,500円のpcでLinux動かしてみた</p>
+          </div>
+
+          <p>
+            taqmです。珍しく部屋の掃除をしてたらこんなものが出てきました。
+          </p>
+          <figure>
+            <img src="img/011.jpg" alt="ThinkPad X40">
+          </figure>
+          <figcaption>i. IBM ThinkPad X40</figcaption>
+          <p>
+            数年前、某リサイクルショップHARD・◯FFで 2,500円で売っているのをみて、興味本位で購入した「ThinkPad X40」です。特に使わないまま放置していたので、今回はこれにOSをインストールして蘇らせていきたいと思います。
+          </p>
+          <div id="contents">
+            <h4>目次</h4>
+            <ol>
+                <li><a href="#01">ThinkPad X40</a></li>
+                <li><a href="#02">電源を入れてみる</a></li>
+                <li><a href="#03">OSを決める</a></li>
+                <li><a href="#04">OSをインストールする</a></li>
+                <li><a href="#05">X40、復活!</a></li>
+            </ol>
+          </div>
+
+          <section id="01">
+            <h3>ThinkPad X40</h3>
+            <p>
+                さて、ThinkPadといえば、現在はLenovo社が製造・販売を行っているノートパソコンですが、今回見つかったX40はIBM社が製造・販売をしていた時代のもので、 一部では名機と言われています。
+            </p>
+            <p>
+                ちなみにスペックはこんな感じ。
+            </p>
+            <h4>購入時のスペック</h4>
+            <ul>
+                <li>CPU: Intel(R) Pentium(R) processor 1.20Ghz</li>
+                <li>アーキテクチャ: i686 - 32bit</li>
+                <li>メモリ: 512MB</li>
+                <li>ストレージ: 60GB - HDD</li>
+                <li>OS: なし</li>
+            </ul>
+            <p>
+                今から約15年前の2004年発売ということで、今のノートPCでは考えられない低スペックですね。
+            </p>
+          </section>
+
+          <section id="02">
+            <h3>電源を入れてみる</h3>
+            <p>
+                早速ACアダプタを接続し、電源を入れてみます。
+            </p>
+            <figure>
+                <img src="img/012.jpg" alt="起動の様子">
+            </figure>
+            <figcaption>ii. 電源を入れてみる</figcaption>
+            <p>
+                IBMのロゴと共に立ち上がりました。本体は問題なく動きそうです。が、OSが入っていないため当然このままでは使い物になりません。なので次に、インストールするOSを決めていこうと思います。
+            </p>
+          </section>
+
+          <section id="03">
+          <h3>OSを決める</h3>
+          <p>
+            OSを入れるといっても、OSには様々な種類が存在します。代表的なものとしてMicrosoft社のWindows、Apple社のMacOS、スマートフォンやタブレットに使われるAndroidがあります。ですがこれらのOSは有償であるか、一般に公開されていません。そのため今回は、無償かつインターネットで広く公開されているものが多くあるLinuxベースのOSを使います。
+          </p>
+          <p>
+            LinuxベースのOSにも無数の種類がありますが、中でも人気の高い「Ubuntu(ウブンツ)」というOSを使用します。ただし、デスクトップ版のUbuntuはCPUやメモリを多く消費してしまうため、スペックが低いX40で使うにはあまり実用的ではありません。
+          </p>
+          <p>
+            参考としてデスクトップ版のUbuntu 18.04 LTS(最新版)を動作させるには、以下のスペックを満たすPCが必要とされています。
+          </p>
+          <h4>Ubuntu 18.04 LTSデスクトップ版に必要なスペック</h4>
+          <ul>
+            <li>2GHz以上のデュアルコアプロセッサ</li>
+            <li>2GB以上のRAM（メモリ）</li>
+            <li>25GB以上のストレージ（ハードディスクやSSD）</li>
+            <li>解像度1024x768以上のディスプレイ</li>
+            <li>インストールメディア用DVDドライブまたはUSBポート</li>
+          </ul>
+          <p>
+            ダメダメですね()
+          </p>
+          <p>
+            そこで今回は用途を限定し、CUIのみを使用することによってグラフィック描画等の処理をなくすことにしました。そのためデスクトップ版ではなく、サーバ版Ubuntuをインストールします。
+          </p>
+          </section>
+
+          <section id="04">
+          <h3>OSをインストールする</h3>
+          <figure>
+            <img src="img/013.png" alt="Old Ubuntu Releases">
+          </figure>
+          <figcaption>iii. Old Ubuntu Releases</figcaption>
+          <p>
+            <a href="https://www.ubuntu.com" target="__blank">Ubuntuの公式サイト</a>の "Old Ubuntu Releases" からサーバ版Ubuntuのイメージをダウンロードします。(公開されている32bit版の中で最新の17.10.1)
+          </p>
+          <p>
+            ddコマンドでイメージファイルをUSBメモリに書き込みます。(<a href="http://ubiqlog.com/archives/11282" target="__blank">参考にさせて頂いたサイト</a>) Windowsの場合はDDWin等を使えばよいと思います。
+          </p>
+          <p>
+            イメージを書き込んだUSBメモリをX40に挿して起動するとインストーラが立ち上がるので画面に従ってインストールを進めていきます。
+          </p>
+          </section>
+
+          <section id="05">
+          <h3>X40、復活!</h3>
+            <figure>
+                <img src="img/014.jpg" alt="Ubuntu">
+            </figure>
+            <figcaption>iv. X40、復活!</figcaption>
+            <p>
+                インストール完了後、PCを再起動すると無事Ubuntuが起動しました! CUIに限られた環境というのもいいですね。
+            </p>
+            <p>
+                今回は眠っていたThinkPad X40を無事、使える環境にすることができました。今のところ用途は特に決まっていませんが、サブのLinux機としていろいろ実験してみようと思います。
+            </p>
+          </section>
+        </main>
+
+        <!--footer-->
+        <footer>
+          <p>&copy; 2018 <a href="https://twitter.com/taqm_" target="__blank">taqm</a></p>
+        </footer>
+    </body>
+</html>
