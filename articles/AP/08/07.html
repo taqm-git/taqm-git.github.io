@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>taqm's Note | ファイアウォール</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="../../../css/stylesheet.css">
+        <link rel="stylesheet" href="../../../css/responsive.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--header-->
+        <header>
+            <h1 id="title"><a href="../../../index.html">taqm's Note</a></h1>
+        </header>
+
+        <!--main-->
+        <main>
+          <h2>ファイアウォール</h2>
+          <div id="list">
+            <p><a href="../../../index.html">HOME</a> > <a href="../index.html">応用情報技術者試験</a> > <a href="index.html">セキュリティ</a> > ファイアウォール</p>
+          </div>
+
+          <div id="contents">
+            <h4>目次</h4>
+            <ol>
+                <li><a href="#01">ファイアウォール</a></li>
+                <li><a href="#02">プロキシサーバ</a></li>
+                <li><a href="#03">WAF</a></li>
+                <li><a href="#04">TLSアクセラレータとWAF</a></li>
+            </ol>
+          </div>
+
+          <section id="01">
+            <h3>ファイアウォール</h3>
+            <p>
+                <span class="hl">ファイアウォール</span>は、インターネットなどのリモートネットワークと社内LANなどの境界線に設置し、不正なデータの通過を阻止するものです。
+            </p>
+            <figure>
+                <img src="img/071.svg" alt="ファイアウォール">
+            </figure>
+            <figcaption>i. ファイアウォールの例</figcaption>
+            <p>
+                ファイアウォールは、一定の規則に従ってパケットの通過/不通過を決定(<span class="hl">フィルタリング</span>)しますが、この規則の要素によって方式が分かれます。
+            </p>
+            <h4><span class="hl">パケットフィルタリング型</span></h4>
+            <p>
+                パケットのIPアドレス、ポート番号をチェックして、フィルタリングを行う。
+            </p>
+            <h4><span class="hl">サーキットレベルゲートウェイ型 (トランスポートゲートウェイ)</span></h4>
+            <p>
+                セグメントレベルのフィルタリングを行い、データを中継する。IPパケットによる通信制御に加え、TCPのセッション単位で任意のポートに関する通信の可否を制御できる。
+            </p>
+            <h4><span class="hl">アプリケーションゲートウェイ型</span></h4>
+            <p>
+                アプリケーションプロトコルレベルのフィルタリングを行い、データを中継する。
+            </p>
+            <p>
+                フィルタリングをするためには、ファイアウォールにフィルタリングルールを設定し、それに沿って各パケットの通過の可否を判断します。このフィルタリングルールの集合を<span class="hl">ルールベース</span>といいます。
+            </p>
+          </section>
+
+          <section id="02">
+            <h3>プロキシサーバ</h3>
+            <p>
+                アプリケーションゲートウェイ型ファイアウォールのうち、とくにHTTPを扱うものを<span class="hl">プロキシサーバ</span>と呼ぶことがあります。プロキシサーバはクライアントからインターネット上のWebサーバへのアクセス要求を中継し、セキュリティの向上を図ります。
+            </p>
+            <p>
+                また、インターネットからのアクセスをWebサーバに中継するものを<span class="hl">リバースプロキシサーバ</span>といいます。
+            </p>
+          </section>
+
+          <section id="03">
+            <h3>WAF</h3>
+            <p>
+                <span class="hl">WAF</span> (Web Application Firewall)は、Webアプリケーションのやり取りを監視し、アプリケーションレベルの不正なアクセスを阻止するファイアウォールです。 Webブラウザからの通信内容を検査し、不正と見なされたアクセス (SQLインジェクションなどの攻撃)を遮断します。
+            </p>
+            <p>
+                WAFは、原則として通信を遮断し、<span class="hl">ホワイトリスト</span>(正常な通信パターンの一覧)と一致した通信のみ通過させる<span class="hl">ホワイトリスト方式</span>と、原則として通信を許可し、<span class="hl">ブラックリスト</span>(不正な通信パターンの一覧)と一致した通信は遮断、あるいは無害化する<span class="hl">ブラックリスト方式</span>の2つの方式に分類できる。
+            </p>
+          </section>
+
+          <section id="04">
+            <h3>TLSアクセラレータとWAF</h3>
+            <p>
+                PCとWebサーバ間でHTTPSなどTLSを利用した暗号化通信をする場合、暗号化と復号処理がWebサーバにとって大きな負担になります。そこで、この処理を肩代わりしてWebサーバの負担を軽減するのが<span class="hl">TLSアクセラレータ</span>です。
+            </p>
+            <p>また、TLS通信の暗号化と復号機能(TLSアクセラレーション機能)をもたないWAFは、TLSアクセラレータとWebサーバの間に設置します。
+            </p>
+          </section>
+
+          <section>
+            <h4>参考</h4>
+            <p><a href="http://amzn.asia/d/id6mgEU" target="__blank">技術評論社 - 応用情報技術者 合格教本</a></p>
+          </section>
+        </main>
+
+        <!--footer-->
+        <footer>
+          <p>&copy; 2018 <a href="https://twitter.com/taqm_" target="__blank">taqm</a></p>
+        </footer>
+    </body>
+</html>

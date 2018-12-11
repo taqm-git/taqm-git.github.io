@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>taqm's Note | セキュリティ対策機器とVPN</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="../../../css/stylesheet.css">
+        <link rel="stylesheet" href="../../../css/responsive.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--header-->
+        <header>
+            <h1 id="title"><a href="../../../index.html">taqm's Note</a></h1>
+        </header>
+
+        <!--main-->
+        <main>
+          <h2>セキュリティ対策機器とVPN</h2>
+          <div id="list">
+            <p><a href="../../../index.html">HOME</a> > <a href="../index.html">応用情報技術者試験</a> > <a href="index.html">セキュリティ</a> > セキュリティ対策機器とVPN</p>
+          </div>
+
+          <div id="contents">
+            <h4>目次</h4>
+            <ol>
+                <li><a href="#01">セキュリティ対策機器</a></li>
+                <li><a href="#02">不正検知方法</a></li>
+                <li><a href="#03">VPN</a></li>
+                <li><a href="#04">IPsec</a></li>
+            </ol>
+          </div>
+
+          <section id="01">
+            <h3>セキュリティ対策機器</h3>
+            <p>
+                システムに対する侵入/侵害を検出・通知する<span class="hl">IDS</span> (Intrusion Detection System: <span class="hl">侵入検知システム</span>)など、物理的侵入に対する対策機器には、次のようなものがあります。
+            </p>
+            <h4>NIDS</h4>
+            <p>
+                <span class="hl">ネットワーク型IDS</span>。管理下のネットワークを監視し、不正なパケットの通過、異常なトラフィック量などを検知して通知する。
+            </p>
+            <h4>HIDS</h4>
+            <p>
+                <span class="hl">ホスト型IDS</span>。ホストにインストールして、そのホストのみを監視する。パケットの分析だけでなく、シグネチャとのパターンマッチングを失敗させるためのパケットが挿入された攻撃でも検知できる。
+            </p>
+            <h4>IPS (Intrusion Prevention System)</h4>
+            <p>
+                <span class="hl">侵入防止システム</span>。不正パケットの検出だけでなく、それを検出した際には通信を遮断するなどの対処も行う。
+            </p>
+            <h4>ハニーポット</h4>
+            <p>
+                ダミーとして使われるサーバやネットワーク機器の総称。攻撃のログをとることで、攻撃元の特定や対策に利用する。
+            </p>
+          </section>
+
+          <section id="02">
+            <h3>不正検知方法</h3>
+            <p>
+                不正検知方法には、<span class="hl">シグネチャ方式</span>と<span class="hl">アノマリー方式</span>があります。
+            </p>
+            <h4>シグネチャ方式</h4>
+            <p>
+                シグネチャと呼ばれるデータベース化された既知の攻撃パターンと通信パケットとのパターンマッチングによって、不正なパケットを検出する方式。
+            </p>
+            <h4>アノマリー方式</h4>
+            <p>
+                正常なパターンを定義し、それに反するものをすべて異常だとみなす方式。未知の攻撃にも有効に機能し、新種の攻撃も検出できる。
+            </p>
+            <p>
+                しかし、いずれの方式も正常なものを不正だと誤認識してしまう<span class="hl">フォールスポジティブ</span>や、不正なものを正常だと判断してしまう<span class="hl">フォールスネガティブ</span>といった問題が起こり得ます。
+            </p>
+          </section>
+
+          <section id="03">
+            <h3>VPN</h3>
+            <p>
+               <span class="hl">VPN</span> (Virtual Private Network)は仮想専用線とも訳される、インターネットを専用線のように使う技術です(インターネットVPN)。
+            </p>
+            <p>
+                VPNでは、認証技術や暗号化技術を利用して、アクセスが許可されたユーザ以外は通信内容にアクセスできないようにしています。通信の内容が暗号化されているため、通信経路としてインターネットを利用しても、途中で傍受されたパケットを解読することができません。
+            </p>
+            <p>
+                VPNを実装するために2つのモードが用意されています。
+            </p>
+            <h4>トランスポートモード</h4>
+            <p>
+                通信を行う端末が直接データの暗号化を行う。ペイロード(パケットのヘッダ部分を除いたデータ)のみの暗号化であり、IPアドレスは暗号化されないため、あて先の盗聴が可能となる。
+            </p>
+            <h4>トンネルモード</h4>
+            <p>
+                VPNゲートウェイを拠点において、その間の通信を暗号化する。送信側ゲートウェイでは、<span class="hl">IPsec</span>を利用し、IPパケットを暗号化してから、受信側のゲートウェイあてのIPヘッダを新たにつけ、拠点間の通信を行う<span class="hl">トンネリング手法</span>をとる。
+            </p>
+          </section>
+
+          <section id="04">
+            <h3>IPsec</h3>
+            <p>
+                VPNを構築する際に利用されるネットワーク層のセキュリティプロトコルが<span class="hl">IPsec</span> (IP Security)です。IPsecでは、ネットワーク層レベルで暗号化や認証、改ざんの検出を行います。
+            </p>
+            <p>
+                IPsecで通信を行う場合、通常のIPでは利用しないパラメータをいろいろ交換します。この情報は、IPヘッダには入り切らないため、IPsec用のフィールドが別に用意されます。このとき、認証だけを行う場合は<span class="hl">AH</span> (Authentication Header)、認証と暗号化を行う場合は<span class="hl">ESP</span> (Encapsulating Security Payload)を用います。
+            </p>
+            <p>
+                また、IPsecでは通信を開始する前に暗号化方式の決定と鍵交換を行います。これを行うフェーズを<span class="hl">IKE</span> (Internet Key Exchange)フェーズといいます。
+            </p>
+          </section>
+
+          <section>
+            <h4>参考</h4>
+            <p><a href="http://amzn.asia/d/id6mgEU" target="__blank">技術評論社 - 応用情報技術者 合格教本</a></p>
+          </section>
+        </main>
+
+        <!--footer-->
+        <footer>
+          <p>&copy; 2018 <a href="https://twitter.com/taqm_" target="__blank">taqm</a></p>
+        </footer>
+    </body>
+</html>
