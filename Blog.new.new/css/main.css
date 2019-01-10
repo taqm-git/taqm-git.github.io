@@ -86,6 +86,10 @@ header{
     margin: 0 auto; 
 }
 
+.block~.block{
+    margin-top: 3vh;
+}
+
 .heading{
     height: 6vh;
     line-height: 6vh;
@@ -211,17 +215,25 @@ header{
 }
 
 .profile-bio{
+    width: 35%;
+    margin: 0 auto;
     color: #afafaf;
     font-size: 0.8em;
 }
 
 .sns{
+    margin-top: 1em;
+    height: 1.2em;
     display: flex;
     justify-content: center;
 }
-.sns-icon{
-    width: 3%;
+.sns-icon~.sns-icon{
+    margin-left: 1em;
 }
+.sns-icon img{
+    height: 100%;
+}
+
 
 /*footer*/
 footer{

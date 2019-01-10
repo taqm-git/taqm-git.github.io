@@ -21,4 +21,9 @@
     .article~.article{
         margin-top: 12%;
     }
+
+    /*profile*/
+    .profile-bio{
+        width: 80%;
+    }
 }
