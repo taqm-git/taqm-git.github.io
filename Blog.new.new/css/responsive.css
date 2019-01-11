@@ -4,7 +4,7 @@
     
 }
 
-@media screen and (max-width: 640px){
+@media screen and (max-width: 480px){
 
     #title{
         font-size: 1.2em;
@@ -28,5 +28,10 @@
     /*profile*/
     .profile-bio{
         width: 80%;
+    }
+
+    /*scroll bar*/
+    ::-webkit-scrollbar{
+        height: 4px;
     }
 }
